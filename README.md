@@ -10,7 +10,7 @@ Here the procedure goes.
 1.  Add custom synocommunity package source in DSM package center. You can refer [synocommunity web](https://synocommunity.com/) to do this.
 2.  Install debian-chroot from synocommunity in DSM package center. We will use its script but not debian environment because of its 32-bit. You also have to install python 2.7 from synocommunity, not from official synology python package.
 3.  Create your own debian-chroot environment using x64 disto. You could refer [Courville's site](https://sites.google.com/a/courville.org/courville/home/synology-debian-chroot) to do so, or simply download my version from [here](https://drive.google.com/open?id=0B4a_0yuNmR_FLVlkYXZJcFYxSWc&authuser=0).
-4.  Replace the whole chroot directory in DSM under `/volume1/@appstore/debian-chroot/var/chroottarget` with our own chroot env from previous step. However, this directory will be deleted once you uninstall debian-chroot from DSM package center. So I suggest putting this environment elsewhere and use soft-link or mount-bind on this. I will use $CHROOT as your chroot location in the following steps.
+4.  Replace the whole chroot directory in DSM under `/volume1/@appstore/debian-chroot/var/chroottarget` with our own chroot env from previous step. However, this directory will be deleted once you uninstall debian-chroot from DSM package center. So I suggest putting this environment elsewhere and use soft-link or mount-bind on this.
 5.  Use debian-chroot script to mount every thing we need, and then enter chroot env to setup all necessary things.
 
     ```sh
