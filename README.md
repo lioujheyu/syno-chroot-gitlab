@@ -38,9 +38,9 @@ Here the procedure goes.
     gitlab-ctl reconfigure
     ````
 
-    There is a big problem here. Configure process will detect your system service initial method and try to append initial script into /etc/inittab which doesn't exist in chroot env. This `gitlab-ctl reconfigure` is likely hang in somewhere or pops out some error messages. But don't panic. We only need this step to generate `gitlab.rb` under `/etc/gitlab`. So if you are hang in this step over 10 mins, just `ctrl-c` and continue next step.
+    Here is a big problem. Configure process will detect your system service initial method and try to append initial script into /etc/inittab which doesn't exist in chroot env. This `gitlab-ctl reconfigure` is very likely to hang in somewhere or pop out some error messages. Don't panic. We only need this step to generate `gitlab.rb` under `/etc/gitlab`. So if you are hang in this step over 10 mins, just `ctrl-c` and continue next step.
     
-8.  edit gitlab.rb. You have to change at least nginx web service's port and postgresql's port to avoid conflict with DSM's service.
+8.  Edit gitlab.rb. You have to change at least nginx web service's port and postgresql's port to avoid conflict with DSM's service.
 
     ````diff
     vim /etc/gitlab/gitlab.rb
@@ -58,23 +58,24 @@ Here the procedure goes.
     + postgresql['port'] = 5433                 # DSM has its own postgresql, change the gitlab's postgresql port allow two postgresql instance coexist without data base cross polution
     # postgresql['data_dir'] = "/var/opt/gitlab/postgresql/data"
     ````
-    If your machine has less than 2GB ram, you will probably encounter some wield problem while activating gitlab's built-in postgresql. Please also find `postgresql['shared_buffers']` in gitlab.rb and change it to 1MB (This may hurt the performance of gitlab's postgresql but yet to verify).
+    If your machine has less than 2GB ram, you will probably encounter some wield problems while activating gitlab's built-in postgresql. Please also find `postgresql['shared_buffers']` in gitlab.rb, uncomment it and change it to 1MB (This may hurt the performance of gitlab's postgresql but yet to verify).
     
     ````diff
     -# postgresql['shared_buffers'] = "256MB" # recommend value is 1/4 of total RAM, up to 14GB.
     + postgresql['shared_buffers'] = "1MB" # recommend value is 1/4 of total RAM, up to 14GB.
     ````
     
-9.  Manually start gitlab related service and reconfigure gitlab
+9.  Reconfigure the gitlab once more to activate the change of gitlab.rb. You will still find it hangs in some message says `gitlab-rails block sleep action whatever` or some error message just pops out. Don't hesitate to `ctrl-c` and then manually start all gitlab related services. After that, perform second gitlab reconfigure. We expect this time with no error message.
 
     ````sh
+    gitlab-ctl reconfigure
     /opt/gitlab/embedded/bin/runsvdir-start &
     gitlab-ctl reconfigure
     ````
     
     You may need to repeat this step multiple times until all service are running successfully.
     
-10. Check if gitlab is running
+10. Check if gitlab is running smoothly
 
     ````sh
     gitlab-ctl status
@@ -91,9 +92,11 @@ Here the procedure goes.
     run: unicorn: (pid 5963) 4s; run: log: (pid 26270) 81831s
     ````
     
-    Congradulation!! Now use your web browser to bring up the gitlab from Synology. Don't forget the port you set in the gitlab.rb.
+    Congradulation!! Now use your web browser to bring up the gitlab. Don't forget the port you set in the gitlab.rb.
     
 If there is anything odd, use `gitlab-rake gitlab:check` to check the error message.
+
+
 
 
 
