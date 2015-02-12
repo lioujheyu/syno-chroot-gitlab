@@ -1,8 +1,9 @@
 # GitLab on Synology NAS
 
-I always dream to setup a gitlab service on my own NAS. At first, I used ipkg and try to recompie everything from scratch but quickly fall into dependency hell until I found chroot. Thanks to the chroot, I only have to modify gitlab's configuration file without building the huge number of package. It's also free me from the old 4.2.3 gcc inside the ipkg and let the nas more close to a real linux.
+I always dream to setup a gitlab service on my own NAS. At first, I used ipkg and try to recompile everything from scratch but quickly fall into dependency hell until I found chroot. Thanks to the chroot, I only have to modify gitlab's configuration file without building the huge number of package. It also frees me from the old 4.2.3 gcc inside the ipkg and let the NAS be more closed to a real linux.
 
-So I write down this installation note about how to setup gitlab inside the chroot environment of Synology NAS. I've try this on a XPEnology in VM, but think it could also work on any synology nas with **x64 architecture CPU** including 412+, 415+ or other higher model. Cause gitlab requires 64-bit support, it's too bad gitlab won't work on 214play (32-bit Intel Atom) while I planed to use this tiny piece of NAS originally.
+So I write down this installation note about how to setup gitlab inside the chroot environment of Synology NAS. I've try this on a XPEnology in VM, but think it could also work on any synology NAS with **x64 architecture CPU** including 412+, 415+ or other higher model. Cause gitlab requires 64-bit support, it's too bad gitlab won't work on 214play (32-bit Intel Atom) while I planned to use this tiny piece of NAS originally.
+
 
 Here the procedure goes.
 
