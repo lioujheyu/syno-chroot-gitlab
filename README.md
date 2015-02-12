@@ -65,7 +65,7 @@ Here the procedure goes.
     gitlab-ctl reconfigure
     ````
 
-    Here is a big problem. Configure process will detect your system service initial method and try to append initial script into /etc/inittab which doesn't exist in chroot env. This `gitlab-ctl reconfigure` is very likely to hang in somewhere or pop out some error messages. Don't panic. We only need this step to generate `gitlab.rb` under `/etc/gitlab`. So if you are hang in this step over 10 mins, just `ctrl-c` and continue next step.
+    Here is a problem. Configure process will detect your system service initial method and try to append initial script into /etc/inittab which doesn't exist in chroot env. This `gitlab-ctl reconfigure` is very likely to hang in somewhere or pop out some error messages. If you are hang in this step over 10 mins, just `ctrl-c` and continue next step.
     
 9. Manually start all gitlab related services. After that, perform second gitlab reconfigure. This time we expect no error message.
 
