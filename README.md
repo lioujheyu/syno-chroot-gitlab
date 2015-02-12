@@ -91,7 +91,7 @@ Here the procedure goes.
     run: unicorn: (pid 5963) 4s; run: log: (pid 26270) 81831s
     ````
     
-    Congradulation!! Now use your web browser to bring up the gitlab from Synology. Don't forget enter the port you set in the gitlab.rb.
+    Congradulation!! Now use your web browser to bring up the gitlab from Synology. Don't forget the port you set in the gitlab.rb.
     
 If there is anything odd, use `gitlab-rake gitlab:check` to check the error message.
 
