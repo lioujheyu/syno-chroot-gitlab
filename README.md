@@ -97,7 +97,7 @@ Congradulation!! Now use your web browser to bring up the gitlab. Don't forget t
 
 1.  back into DSM shell and edit `/var/packages/debian-chroot/scripts/start-stop-status`.  
 
-    ````sh
+    ````diff
     exit                    # exit chroot
     vi /var/packages/debian-chroot/scripts/start-stop-status
     
@@ -116,7 +116,7 @@ Congradulation!! Now use your web browser to bring up the gitlab. Don't forget t
     echo -e "#! bin/sh\n/var/packages/debian-chroot/scripts/start-stop-status start " > /etc/rc.local
     ````
     
-Now reboot your NAS and see if gitlab is worlking fine after reboot.
+Now reboot your NAS and see if gitlab is worlking after reboot.
 
 ## Reference
 
